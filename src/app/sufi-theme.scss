@@ -1,0 +1,25 @@
+@use "@angular/material" as mat;
+
+@include mat.core();
+
+$sufi-theme-primary: mat.define-palette(mat.$orange-palette, 500);
+$sufi-theme-accent: mat.define-pallete(mat.$lime-palette, A200, A100, A700);
+$sufi-theme-warn: mat.define-palette(mat.$red-palette);
+$sufi-light-theme: mat.define-light-theme(
+  (
+    color: (
+      primary: $sufi-theme-primary,
+      accent: $sufi-theme-accent,
+      warn: $sufi-theme-warn,
+    ),
+    typography: mat.define-typography-config(),
+    density: 0,
+  )
+);
+@include mat.all-component-themes($sufi-light-theme);
+
+@media (prefers-color-scheme: dark) {
+  // Use the `-color` mixins to only apply color styles without reapplying the same
+  // typography and density styles.
+  @include mat.core-color($sufi-dark-theme);
+}
